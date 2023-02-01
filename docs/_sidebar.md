@@ -1,4 +1,3 @@
-# Laravel + React
 
 - Primeros Pasos
 
