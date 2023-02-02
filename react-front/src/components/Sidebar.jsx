@@ -17,6 +17,15 @@ export default function Sidebar() {
                 <Categoria categoria={cat}/>
             )}
         </div>
+
+        <div className='my-5 px-5'>
+            <button
+                type='button'
+                className='text-center bg-red-500 w-full p-3 font-bold text-white truncate rounded-xl'
+            >
+                Cancelar Orden
+            </button>
+        </div>
     </aside>
   )
 }
