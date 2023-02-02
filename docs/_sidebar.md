@@ -6,4 +6,5 @@
 
 - React
   - [React Router DOM](md/3-ReactRouterDOM.md)
-  
+  - [Imagenes](md/4-Imagenes.md)
+  - [Componentes](md/5-components.md)

@@ -70,4 +70,28 @@ export default function Layout() {
 }
 
 ```
+## Navegar entre rutas
 
+### A través de enlaces
+
+Se puede redireccionar de la siguiente forma pero esto causa un reload a la página:
+
+```jsx
+<nav className="mt-5">
+  <a href="/auth/login">
+    Ya tienes una cuenta? Inicia sesión
+  </a>
+</nav>
+```
+`Por lo tanto es mejor utilizar el componente Link de react-router-dom`
+
+```jsx
+import { Link } from "react-router-dom"
+...
+
+<nav className="mt-5">
+  <Link to="/auth/login">
+    Ya tienes una cuenta? Inicia sesión
+  </Link>
+</nav>
+```
