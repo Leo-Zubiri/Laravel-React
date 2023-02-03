@@ -14,7 +14,10 @@ export default function Sidebar() {
 
         <div className="mt-10">
             {categorias.map((cat) => 
-                <Categoria categoria={cat}/>
+                <Categoria 
+                    categoria={cat} 
+                    key={`${cat.id}-${cat.nombre}`}
+                />
             )}
         </div>
 
