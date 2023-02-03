@@ -9,3 +9,4 @@
   - [Imagenes](md/4-Imagenes.md)
   - [Componentes](md/5-components.md)
   - [Helpers](md/6-helpers.md)
+  - [Context API](md/7-context.md)
