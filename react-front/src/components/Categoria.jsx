@@ -2,12 +2,12 @@ import useAppContext from "../hooks/useAppContext";
 
 export default function Categoria({categoria}) {
 
-  const {handleClickCategoria} = useAppContext();
+  const {handleClickCategoria,categoriaActual} = useAppContext();
   const {nombre,icono,id} = categoria;
 
   return (
     <div
-        className="flex items-center w-full border gap-4 p-3 hover:bg-amber-400 cursor-pointer"  
+        className={`${categoriaActual.id === id ? "bg-amber-400" : "bg-white"} flex items-center w-full border gap-4 p-3 hover:bg-amber-400 cursor-pointer`}  
     >
         <img 
             src={`/img/icono_${icono}.svg`}

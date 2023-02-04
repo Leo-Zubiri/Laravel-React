@@ -1,11 +1,11 @@
-import {productos} from '../data/productos'
+import {productos as data} from '../data/productos'
 import Producto from '../components/Producto'
 import useAppContext from '../hooks/useAppContext'
 
 export default function Inicio() {
   const {categoriaActual} = useAppContext();
 
-
+  const productos = data.filter(prod => prod.categoria_id === categoriaActual.id);
 
   return (
     <>
