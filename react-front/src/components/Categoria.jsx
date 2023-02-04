@@ -1,10 +1,13 @@
+import useAppContext from "../hooks/useAppContext";
 
 export default function Categoria({categoria}) {
-  const {nombre,icono} = categoria;
+
+  const {handleClickCategoria} = useAppContext();
+  const {nombre,icono,id} = categoria;
 
   return (
     <div
-        className="flex items-center w-full border gap-4 p-3 hover:bg-amber-400 cursor-pointer"
+        className="flex items-center w-full border gap-4 p-3 hover:bg-amber-400 cursor-pointer"  
     >
         <img 
             src={`/img/icono_${icono}.svg`}
@@ -12,9 +15,13 @@ export default function Categoria({categoria}) {
             className="w-14"
         />
 
-        <p className="text-lg font-bold cursor-pointer truncate">
+        <button 
+          className="text-lg font-bold cursor-pointer truncate"
+          type="button"
+          onClick={() => handleClickCategoria(id)}
+        >
             {nombre}
-        </p>
+        </button>
     </div>
   )
 }
