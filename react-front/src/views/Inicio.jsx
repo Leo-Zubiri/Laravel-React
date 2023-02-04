@@ -1,7 +1,10 @@
 import {productos} from '../data/productos'
 import Producto from '../components/Producto'
+import useAppContext from '../hooks/useAppContext'
 
 export default function Inicio() {
+  const {hola} = useAppContext();
+
   return (
     <>
       <h1 className='text-4xl font-black'>Inicio</h1>
