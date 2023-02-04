@@ -1,7 +1,9 @@
-import {categorias} from '../data/categorias'
+import useAppContext from '../hooks/useAppContext'
 import Categoria from './Categoria'
 
 export default function Sidebar() {
+    const {categorias} = useAppContext();
+
   return (
     <aside className="md:w-72">
         <div className="p-4">
