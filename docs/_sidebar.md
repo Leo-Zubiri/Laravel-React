@@ -10,3 +10,5 @@
   - [Componentes](md/5-components.md)
   - [Helpers](md/6-helpers.md)
   - [Context API](md/7-context.md)
+  - [React-Modal](md/8-react-modal.md)
+  

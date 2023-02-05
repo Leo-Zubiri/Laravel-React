@@ -6,19 +6,31 @@ const AppContext = createContext();
 export const AppProvider = ({children}) => { 
 
     const [categorias, setCategorias] = useState(categoriasDB);
-
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
+    const [modal, setModal] = useState(false);
+    const [producto, setProducto] = useState({});
 
     const handleClickCategoria = (id) => {
         const categoria = categorias.filter((cat) => cat.id === id)[0];
         setCategoriaActual(categoria);
     }
+
+    const handleClickModal = () => {
+        setModal(!modal);
+    }
+
+    const handleSetProducto = (producto) => {
+        setProducto(producto);
+    }
+
     return (
         <AppContext.Provider
             value={{
                 categorias,setCategorias,
                 categoriaActual,setCategoriaActual,
-                handleClickCategoria
+                handleClickCategoria,
+                modal, handleClickModal,
+                producto, handleSetProducto,
             }}
         >
             { children }
