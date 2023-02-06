@@ -24,6 +24,10 @@ export const AppProvider = ({children}) => {
         setProducto(producto);
     }
 
+    const handleAgregarPedido = ({categoria_id,imagen,...producto}) => {
+        setPedido([...pedido,producto]);
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -33,6 +37,7 @@ export const AppProvider = ({children}) => {
                 modal, handleClickModal,
                 producto, handleSetProducto,
                 pedido, setPedido,
+                handleAgregarPedido
             }}
         >
             { children }
