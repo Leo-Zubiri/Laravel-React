@@ -9,6 +9,7 @@ export const AppProvider = ({children}) => {
     const [categoriaActual, setCategoriaActual] = useState(categorias[0]);
     const [modal, setModal] = useState(false);
     const [producto, setProducto] = useState({});
+    const [pedido, setPedido] = useState([]);
 
     const handleClickCategoria = (id) => {
         const categoria = categorias.filter((cat) => cat.id === id)[0];
@@ -31,6 +32,7 @@ export const AppProvider = ({children}) => {
                 handleClickCategoria,
                 modal, handleClickModal,
                 producto, handleSetProducto,
+                pedido, setPedido,
             }}
         >
             { children }
