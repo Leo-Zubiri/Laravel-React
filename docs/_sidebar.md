@@ -12,4 +12,5 @@
   - [Context API](md/7-context.md)
   - [React-Modal](md/8-react-modal.md)
   - [Array.functions](md/9-array-functions.md)
+  - [React-Toastify](md/10-react-toastify.md)
   

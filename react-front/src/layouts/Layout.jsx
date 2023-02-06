@@ -7,6 +7,8 @@ import useAppContext from "../hooks/useAppContext"
 import ModalProducto from "../components/ModalProducto"
 
 import Modal from 'react-modal'
+import {ToastContainer} from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
 
 const customStyles = {
   content: {
@@ -45,6 +47,7 @@ export default function Layout() {
           <ModalProducto/>
         </Modal>
 
+        <ToastContainer/>
     </>
   )
 }
