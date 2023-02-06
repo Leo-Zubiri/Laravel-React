@@ -1,4 +1,5 @@
 import useAppContext from "../hooks/useAppContext"
+import ResumenProducto from "./ResumenProducto";
 
 export default function Resumen() {
   const {pedido} = useAppContext();
@@ -19,7 +20,12 @@ export default function Resumen() {
               No hay elementos en tu pedido aún
             </p>
           ) : (
-            <p>Si hay algo</p>
+            pedido.map(prod=>(
+              <ResumenProducto 
+                key={prod.id}
+                producto={prod}
+              />
+            ))
           )
         }
       </div>

@@ -11,4 +11,5 @@
   - [Helpers](md/6-helpers.md)
   - [Context API](md/7-context.md)
   - [React-Modal](md/8-react-modal.md)
+  - [Array.functions](md/9-array-functions.md)
   

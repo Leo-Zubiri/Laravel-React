@@ -1,12 +1,25 @@
 import useAppContext from "../hooks/useAppContext"
 import { formatearDinero } from "../helpers";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export default function ModalProducto() {
 
     const [cantidad, setCantidad] = useState(1);
-    const {producto, handleClickModal, handleAgregarPedido} = useAppContext();
+    const {producto, handleClickModal, 
+        handleAgregarPedido, pedido
+    } = useAppContext();
+    const [edicion, setEdicion] = useState(false);
+
+    useEffect(() => { 
+        if(pedido.some(pedidoState => pedidoState.id === producto.id)){
+            // Si Está en el pedido
+            const productoEdit = pedido.filter(pedidoState => pedidoState.id === producto.id)[0];
+
+            setCantidad(productoEdit.cantidad);
+            setEdicion(true);
+        }
+    },[pedido])
    
   return (
     <div className="md:flex gap-10 items-center">
@@ -65,9 +78,12 @@ export default function ModalProducto() {
             <button
                 type="button"
                 className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
-                onClick={()=>handleAgregarPedido({...producto,cantidad})}
+                onClick={()=>{
+                    handleAgregarPedido({...producto,cantidad})
+                    handleClickModal()
+                }}
             >
-                Agregar al pedido
+                {edicion ? "Guardar Cambios" : "Agregar al pedido"}
             </button>
         </div>
     </div>
