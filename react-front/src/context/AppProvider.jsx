@@ -27,7 +27,7 @@ export const AppProvider = ({children}) => {
         setProducto(producto);
     }
 
-    const handleAgregarPedido = ({categoria_id,imagen,...producto}) => {
+    const handleAgregarPedido = ({categoria_id,...producto}) => {
         
         if(pedido.some(pedidoState => pedidoState.id === producto.id)){
             // Si Está en el pedido
@@ -42,6 +42,12 @@ export const AppProvider = ({children}) => {
         }
     }
 
+    const handleEditarCantidad = (id) => { 
+        const productoActualizar = pedido.filter(prod=>prod.id === id)[0];
+        setProducto(productoActualizar);
+        setModal(!modal);
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -51,7 +57,8 @@ export const AppProvider = ({children}) => {
                 modal, handleClickModal,
                 producto, handleSetProducto,
                 pedido, setPedido,
-                handleAgregarPedido
+                handleAgregarPedido,
+                handleEditarCantidad
             }}
         >
             { children }
