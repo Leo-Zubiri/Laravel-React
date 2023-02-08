@@ -48,6 +48,12 @@ export const AppProvider = ({children}) => {
         setModal(!modal);
     }
 
+    const handleEliminarProductoPedido = (id) => {
+        const pedidoActualizado = pedido.filter(prod=>prod.id !== id);
+        setPedido(pedidoActualizado);
+        toast.success("Eliminado del pedido");
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -58,7 +64,8 @@ export const AppProvider = ({children}) => {
                 producto, handleSetProducto,
                 pedido, setPedido,
                 handleAgregarPedido,
-                handleEditarCantidad
+                handleEditarCantidad,
+                handleEliminarProductoPedido
             }}
         >
             { children }

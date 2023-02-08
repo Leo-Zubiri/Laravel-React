@@ -2,6 +2,8 @@
 
 Algunas funciones importantes para utilizar con los arreglos en react.
 
+[`Mas funciones y comportamiento en Does it mutate!!! ->`](https://doesitmutate.xyz/)
+
 ## map
 
 ```jsx
