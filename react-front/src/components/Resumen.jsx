@@ -1,8 +1,9 @@
+import { formatearDinero } from "../helpers";
 import useAppContext from "../hooks/useAppContext"
 import ResumenProducto from "./ResumenProducto";
 
 export default function Resumen() {
-  const {pedido} = useAppContext();
+  const {pedido,total} = useAppContext();
 
   return (
     <aside className="md:w-72 h-screen overflow-y-scroll p-5">
@@ -31,7 +32,7 @@ export default function Resumen() {
       </div>
 
       <p className="text-xl mt-10">
-        Total: {''}
+        Total: {formatearDinero(total)}
       </p>
 
       <form action="" className="w-full">

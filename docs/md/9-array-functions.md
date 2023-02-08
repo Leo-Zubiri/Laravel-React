@@ -44,3 +44,13 @@ if(pedido.some(pedidoState => pedidoState.id === producto.id)){
     setPedido([...pedido,producto]);
 }
 ```
+
+## Reduce
+
+Reduce utiliza un callback con un acumulado y despues la variable en cada iteracion, y el ultimo parametro en que valor empieza el acumulado
+
+```jsx
+useEffect(() => { 
+    const nuevoTotal = pedido.reduce((total,prod) => (prod.precio*prod.cantidad) + total,0);
+},[pedido])
+```

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 import {categorias as categoriasDB} from '../data/categorias'
 
@@ -13,6 +13,12 @@ export const AppProvider = ({children}) => {
     const [modal, setModal] = useState(false);
     const [producto, setProducto] = useState({});
     const [pedido, setPedido] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => { 
+        const nuevoTotal = pedido.reduce((total,prod) => (prod.precio*prod.cantidad) + total,0);
+        setTotal(nuevoTotal);
+    },[pedido])
 
     const handleClickCategoria = (id) => {
         const categoria = categorias.filter((cat) => cat.id === id)[0];
@@ -63,6 +69,7 @@ export const AppProvider = ({children}) => {
                 modal, handleClickModal,
                 producto, handleSetProducto,
                 pedido, setPedido,
+                total,setTotal,
                 handleAgregarPedido,
                 handleEditarCantidad,
                 handleEliminarProductoPedido

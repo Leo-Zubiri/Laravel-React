@@ -5,7 +5,7 @@ export default function ResumenProducto({producto}) {
 
     const {
       handleEditarCantidad,
-      handleEliminarProductoPedido
+      handleEliminarProductoPedido,
     } = useAppContext();
     const {
         id, nombre, precio, cantidad,
