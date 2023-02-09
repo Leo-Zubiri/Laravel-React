@@ -3,8 +3,8 @@ import { createContext, useState, useEffect } from "react"
 import {categorias as categoriasDB} from '../data/categorias'
 
 import { toast } from "react-toastify";
+import clienteAxios from "../config/axios";
 
-import axios from 'axios'
 
 const AppContext = createContext();
 
@@ -24,7 +24,7 @@ export const AppProvider = ({children}) => {
 
     const obtenerCategorias = async () => {
         try {
-            const respuesta = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
+            const respuesta = await clienteAxios('/api/categorias')
             const {data} = respuesta;
 
             setCategorias(data.data);

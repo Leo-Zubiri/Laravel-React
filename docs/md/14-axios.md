@@ -43,3 +43,28 @@ Por lo que se sustituye en la petición:
 ```js
 const respuesta = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
 ```
+
+## Cliente de Axios
+
+Crear directorio `src/config/axios.js`
+
+```JS
+import axios from 'axios'
+
+const clienteAxios = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+})
+
+export default clienteAxios;
+```
+
+Desde el archivo donde se utilice la variable de entorno:
+
+```jsx
+
+import clienteAxios from "../config/axios";
+
+...
+
+ const respuesta = await clienteAxios('/api/categorias')
+```
