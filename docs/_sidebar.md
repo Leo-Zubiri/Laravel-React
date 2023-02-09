@@ -16,3 +16,4 @@
 
 - Laravel
   - [Modelo Categoria](md/11-laravel-modelo.md)
+  - [Seeder Categoria](md/12-seeder.md)
