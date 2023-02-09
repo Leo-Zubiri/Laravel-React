@@ -25,3 +25,40 @@ public function index() {
     ]); 
 }
 ```
+
+##  API Resources
+
+Con API Resources se pueden personalizar las respuestas JSON.
+
+Para crear una respuesta personalizada:
+
+```php artisan make:resource CategoriaCollection```
+
+```php artisan make:resource CategoriaResource```
+
+Los archivos resultantes se encuentran en `app/Http/Resources`
+
+El archivo `Collection` se utiliza para retornar todos los campos de la misma forma, desde el controlador:
+
+```php
+public function index() {
+    // return response()->json([
+    //     'categorias' => Categoria::all()
+    // ]); 
+
+    return new CategoriaCollection(Categoria::all());
+}
+```
+
+Desde el `Resource` se establece la respuesta compuesta segun se requiera:
+
+```php
+public function toArray($request)
+{
+    return [
+        'id' => $this->id,
+        'nombre' => $this->nombre,
+        'nombre_id' => $this->nombre. "-". $this->id,
+    ];
+}
+```
