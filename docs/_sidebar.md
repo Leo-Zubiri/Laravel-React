@@ -18,3 +18,6 @@
   - [Modelo Categoria](md/11-laravel-modelo.md)
   - [Seeder Categoria](md/12-seeder.md)
   - [Respuesta JSON](md/13-api.md)
+
+- Laravel + React
+  - [Axios](md/14-axios.md)
