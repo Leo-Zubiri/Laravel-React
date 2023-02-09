@@ -13,4 +13,6 @@
   - [React-Modal](md/8-react-modal.md)
   - [Array.functions](md/9-array-functions.md)
   - [React-Toastify](md/10-react-toastify.md)
-  
+
+- Laravel
+  - [Modelo Categoria](md/11-laravel-modelo.md)
