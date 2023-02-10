@@ -62,3 +62,9 @@ public function toArray($request)
     ];
 }
 ```
+
+## Crear Modelo junto a metodos API
+
+Al crear un modelo si se coloca la bandera `--api`, el controlador es creado junto con los metodos necesarios para el comportamiento de API REST.
+
+```php artisan make:model Producto --resource --api --migration```
