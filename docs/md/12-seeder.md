@@ -53,3 +53,9 @@ Desde el `DatabaseSeeder` colocar:
 Por ultimo se ejecuta el seeder:
 
 ```php artisan db:seed```
+
+Lo anterior siembra los valores en la base de datos pero puede duplicar el contenido.
+
+Para evitar eso y volver a insertar todo desde cero:
+
+```php artisan migrate:refresh --seed```
