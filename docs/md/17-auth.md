@@ -151,3 +151,6 @@ Cuando se manda el post entonces:
 ```jsx
     {errores ? errores.map(err=> <p>{err}</p>): null}
 ```
+
+### Componente mensaje error
+

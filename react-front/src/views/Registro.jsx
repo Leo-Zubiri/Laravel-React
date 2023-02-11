@@ -4,6 +4,8 @@ import { createRef,useState } from "react"
 
 import clienteAxios from "../config/axios";
 
+import Alerta from "../components/Alerta";
+
 export default function Registro() {
 
   const nameRef = createRef();
@@ -42,7 +44,7 @@ export default function Registro() {
        <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
           <form onSubmit={handleSubmit} noValidate>
 
-            {errores ? errores.map(err=> <p>{err}</p>): null}
+            {errores ? errores.map(err=> <Alerta key={err}>{err}</Alerta>): null}
 
             <div className="mb-4">
               <label 
