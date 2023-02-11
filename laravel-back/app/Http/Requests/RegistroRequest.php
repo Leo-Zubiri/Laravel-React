@@ -34,4 +34,14 @@ class RegistroRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es obligatorio',
+            'email.required' => 'El email es obligatorio',
+            'email.email' => 'El correo no tiene un formato válido',
+            'email.unique' => 'Existe una cuenta con este correo',
+            'password.required' => 'Campo Password es requerido'
+        ];
+    }
 }

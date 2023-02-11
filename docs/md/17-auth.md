@@ -71,6 +71,15 @@ use Illuminate\Validation\Rules\Password;
             ],
         ];
     }
+
+    // Si se desea crear mensajes personalizados
+    public function messages(){
+        return [
+            'name.required' => 'El nombre es obligatorio',
+            'email.required' => 'El email es obligatorio',
+            'email.email' => 'El correo no tiene un formato válido',
+        ];
+    }
 ```
 
 ## Desde React
@@ -154,3 +163,12 @@ Cuando se manda el post entonces:
 
 ### Componente mensaje error
 
+```jsx
+export default function Alerta({children}) {
+  return (
+    <div className="text-center my-2 bg-red-600 text-white font-bold p-3 uppercase border-l-red-400 border-l-8" >
+        {children}
+    </div>
+  )
+}
+```
