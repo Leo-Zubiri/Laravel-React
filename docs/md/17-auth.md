@@ -1,5 +1,7 @@
 # Autenticación
 
+## Desde laravel
+
 Crear un controlador para la autenticación:
 
 ```php artisan make:controller AuthController```
@@ -19,7 +21,14 @@ Crear un controlador para la autenticación:
     }
 ```
 
-## Request Personalizados
+Crear rutas
+
+```php
+//Autenticación
+Route::post('/register',[AuthController::class,'register']);
+```
+
+### Request Personalizados
 
 Request para validaciones avanzadas. Personalizar las validaciones de la información que ingresa el usuario.
 
@@ -64,7 +73,81 @@ use Illuminate\Validation\Rules\Password;
     }
 ```
 
-```php
-//Autenticación
-Route::post('/register',[AuthController::class,'register']);
+## Desde React
+
+Importar `createRef` y crear una referencia a cada input del formulario:
+
+```jsx
+import { createRef,useState } from "react"
+
+...
+
+  const nameRef = createRef();
+  const emailRef = createRef();
+  const passwordRef = createRef();
+  const passwordConfirmationRef = createRef();
+
+...
+
+    <input 
+      id="name"
+      type="text"
+      name="name"
+      placeholder="Tu Nombre"
+      ref={nameRef}
+    />
+```
+
+En el formulario agregamos una funcion para el submit:
+
+```js
+<form onSubmit={handleSubmit} noValidate/>
+
+...
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const datos = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      password_confirmation: passwordConfirmationRef.current.value,
+    }
+    console.log(datos)
+
+    try {
+      const response = await clienteAxios.post('/api/register',datos);
+      console.log(response);
+    } catch (error) {
+      console.log(error.response.data.errors);
+    }
+  }
+```
+
+### Mensajes de error
+
+Se recomienda manejar los errores con el state para reflejarlos:
+
+```jsx
+  const [errores, setErrores] = useState([]);
+```
+Cuando se manda el post entonces:
+
+```jsx
+    try {
+      const response = await clienteAxios.post('/api/register',datos);
+      console.log(response);
+    } catch (error) {
+      setErrores(Object.values(
+        error.response.data.errors
+      ));
+    }
+```
+> Object.values une todos los valores dentro de un arreglo
+
+
+```jsx
+    {errores ? errores.map(err=> <p>{err}</p>): null}
 ```
