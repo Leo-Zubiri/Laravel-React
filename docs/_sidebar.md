@@ -23,3 +23,4 @@
   - [Axios](md/14-axios.md)
   - [Pagination](md/15-pagination.md)
   - [UseSWR](md/16-swr.md)
+  - [Autenticación](md/17-auth.md)
