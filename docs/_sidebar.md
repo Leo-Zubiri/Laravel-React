@@ -24,3 +24,4 @@
   - [Pagination](md/15-pagination.md)
   - [UseSWR](md/16-swr.md)
   - [Autenticación](md/17-auth.md)
+  - [CORS](md/18-CORS.md)

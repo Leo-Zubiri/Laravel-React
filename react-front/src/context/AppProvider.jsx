@@ -30,7 +30,7 @@ export const AppProvider = ({children}) => {
             setCategorias(data.data);
             setCategoriaActual(data.data[0])
 
-            console.log(respuesta)
+            //console.log(respuesta)
 
         } catch (error) {
             console.log(error)

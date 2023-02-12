@@ -172,3 +172,44 @@ export default function Alerta({children}) {
   )
 }
 ```
+
+## TOKEN
+
+### Crear un token de usuario
+
+PHP utiliza su propia API de tokens, por lo que al usar el `createToken` se utiliza una tabla llamada `personal_access_tokens` en la base de datos
+
+```PHP
+    public function register(RegistroRequest $request){
+        // Validar el registro
+        $data = $request->validated();
+
+        // Crear el usuario
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+
+        // Retornar una respuesta
+        return [
+            'token' => $user->createToken('token')->plainTextToken,
+            'user' => $user
+        ];
+    }
+```
+
+### Peticion desde Postman/Insomnia
+
+Desde las rutas dentro de `api.php` existe un endpoint `/user` que se encuentra bajo el middleware de autenticación.
+
+Por lo que desde una peticion dentro de insomnia se deben agregar los siguientes headers:
+
+![](../img/1-insomnia.png)
+
+Se necesita que el usuario esté autenticado para hacer peticiones a un endpoint.
+
+Si utilizamos el token que regresa al usar el usuario se permite hacer la petición:
+
+![](../img/2-insomnia.png)
+

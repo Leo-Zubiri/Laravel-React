@@ -24,11 +24,11 @@ export default function Registro() {
       password: passwordRef.current.value,
       password_confirmation: passwordConfirmationRef.current.value,
     }
-    console.log(datos)
+    //console.log(datos)
 
     try {
       const response = await clienteAxios.post('/api/register',datos);
-      console.log(response);
+      console.log(response.data.token);
     } catch (error) {
       setErrores(Object.values(
         error.response.data.errors
