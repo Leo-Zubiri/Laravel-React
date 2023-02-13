@@ -266,3 +266,58 @@ Se retorna un token en caso de ser válidas las credencias y se almacena en el l
     }
   }
 ```
+
+## useAuth
+
+Mediante un Hook personalizado se puede simplificar la lógica de la autenticación desde react:
+
+```jsx
+// useAuth
+
+import clienteAxios from "../config/axios"
+
+export const useAuth = ({middleware,url}) => {
+
+    const login = async (datos,setErrores) => { 
+        try {
+            const response = await clienteAxios.post('/api/login',datos);
+            localStorage.setItem('AUTH_TOKEN',response.data.token);
+            setErrores([])
+        } catch (error) {
+            setErrores(Object.values(
+              error.response.data.errors
+            ));
+        }
+    }
+
+    const register = () => { }
+
+    const logout = () => { }
+
+    return {
+        login,
+        register,
+        logout
+    }
+}
+```
+Y para consumirlo desde las vistas correspondientes:
+
+```jsx
+
+import { useAuth } from "../hooks/useAuth";
+
+...
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const datos = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }
+    
+    login(datos, setErrores)
+  }
+
+```
