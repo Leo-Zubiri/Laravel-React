@@ -309,6 +309,13 @@ import { useAuth } from "../hooks/useAuth";
 
 ...
 
+  const {login} = useAuth({
+    middleware: 'guest',
+    url: '/'
+  });
+  
+...
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
