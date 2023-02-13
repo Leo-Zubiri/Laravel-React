@@ -213,3 +213,56 @@ Si utilizamos el token que regresa al usar el usuario se permite hacer la petici
 
 ![](../img/2-insomnia.png)
 
+
+## Login
+
+Desde el front se envian los datos de email y password hacia la ruta:
+
+```php
+Route::post('/login',[AuthController::class,'login']);
+```
+Desde el método login:
+
+```php
+public function login(LoginRequest $request){
+    $data = $request->validated();
+
+    // Verificar credenciales
+    if(!Auth::attempt($data)){
+        return response([
+            'errors' => ['El email o password son incorrectos']
+        ],422);
+    }
+
+    // Autenticar al usuario
+    $user = Auth::user();
+    
+    return [
+        'token' => $user->createToken('token')->plainTextToken,
+        'user' => $user
+    ];
+}
+```
+
+Se retorna un token en caso de ser válidas las credencias y se almacena en el localStorage del navegador desde el frontend:
+
+```jsx
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const datos = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    }
+    //console.log(datos)
+
+    try {
+      const response = await clienteAxios.post('/api/login',datos);
+      localStorage.setItem('AUTH_TOKEN',response.data.token);
+    } catch (error) {
+      setErrores(Object.values(
+        error.response.data.errors
+      ));
+    }
+  }
+```
