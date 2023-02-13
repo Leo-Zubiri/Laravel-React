@@ -179,7 +179,7 @@ export default function Alerta({children}) {
 
 PHP utiliza su propia API de tokens, por lo que al usar el `createToken` se utiliza una tabla llamada `personal_access_tokens` en la base de datos
 
-```PHP
+```php
     public function register(RegistroRequest $request){
         // Validar el registro
         $data = $request->validated();
@@ -313,7 +313,7 @@ import { useAuth } from "../hooks/useAuth";
     middleware: 'guest',
     url: '/'
   });
-  
+
 ...
 
   const handleSubmit = async (e) => {

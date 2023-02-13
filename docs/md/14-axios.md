@@ -48,7 +48,7 @@ const respuesta = await axios(`${import.meta.env.VITE_API_URL}/api/categorias`)
 
 Crear directorio `src/config/axios.js`
 
-```JS
+```js
 import axios from 'axios'
 
 const clienteAxios = axios.create({

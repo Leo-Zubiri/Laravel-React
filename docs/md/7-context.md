@@ -79,7 +79,7 @@ export default useMiContext;
 
 Ahora para acceder a las porciones del contexto desde los componentes:
 
-```JS
+```js
 import useMiContext from '../hooks/useCotizador'
 
 ...
