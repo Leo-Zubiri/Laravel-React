@@ -37,4 +37,10 @@ export const useAuth = ({middleware,url}) => {
             await mutate() //Forzar revalidacion useSWR
 
             ...
+        
+    useEffect(() => { 
+        if(middleware === 'guest' && url && user){
+            navigate(url)
+        }
+    },[user,error]
 ```
