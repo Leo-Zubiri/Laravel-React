@@ -74,3 +74,47 @@ export default function Layout() {
   })
 
 ```
+
+## Remover token
+
+Desde useAuth:
+
+```jsx
+
+    const logout =  async () => { 
+        try {
+            await clienteAxios.post('/api/logout', null, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            localStorage.removeItem('AUTH_TOKEN');
+            await mutate(undefined)
+        } catch (error) {
+            throw Error(error?.response?.data?.errors)
+        }
+    }
+```
+
+Desde el componente que lo importa:
+
+```jsx
+    const { logout } = useAuth({
+        middleware: 'auth'
+    })
+```
+
+Desde laravel
+
+```php
+    public function logout(Request $request){
+        $user = $request->user();
+
+        $user->currentAccessToken()->delete();
+
+        return [
+            'user' => null
+        ];
+    }
+```
