@@ -25,3 +25,4 @@
   - [UseSWR](md/16-swr.md)
   - [Autenticación](md/17-auth.md)
   - [CORS](md/18-CORS.md)
+  - [Auth y useSWR](md/19-auth-useSwr.md)

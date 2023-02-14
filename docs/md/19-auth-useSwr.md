@@ -1,3 +1,14 @@
+# Auth y useSWR
+
+Cuando se obtiene el token de laravel en el front se puede utilizar useSWR para revalidar los datos.
+
+    Hay ventajas de implementar SWR, si el token expira se cerrará la sesión, se identificará que usuario inicia sesión.
+
+## useAuth
+
+Se integra SWR al hook personalizado de useAuth
+
+```jsx
 import useSWR from 'swr';
 
 import clienteAxios from "../config/axios"
@@ -24,23 +35,6 @@ export const useAuth = ({middleware,url}) => {
             localStorage.setItem('AUTH_TOKEN',response.data.token);
             setErrores([])
             await mutate() //Forzar revalidacion useSWR
-        } catch (error) {
-            setErrores(Object.values(
-              error.response.data.errors
-            ));
-        }
-    }
 
-    const register = () => { }
-
-    const logout = () => { }
-
-    console.log(user)
-    console.log(error)
-
-    return {
-        login,
-        register,
-        logout
-    }
-}
+            ...
+```
