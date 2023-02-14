@@ -10,6 +10,8 @@ import Modal from 'react-modal'
 import {ToastContainer} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 
+import { useAuth } from "../hooks/useAuth"
+
 const customStyles = {
   content: {
     top: "50%",
@@ -26,6 +28,10 @@ Modal.setAppElement('#root');
 export default function Layout() {
   
   const {modal,handleClickModal} = useAppContext();
+  
+  const {user,error} = useAuth({
+    middleware: 'auth'
+  })
 
   return (
     <>

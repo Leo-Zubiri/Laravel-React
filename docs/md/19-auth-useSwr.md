@@ -44,3 +44,33 @@ export const useAuth = ({middleware,url}) => {
         }
     },[user,error]
 ```
+
+## Proteger ruta
+
+Se agrega al useEffect de useAuth:
+
+```jsx
+
+    useEffect(() => { 
+        if(middleware === 'guest' && url && user){
+            navigate(url)
+        }
+
+        if(middleware === 'auth' && error){
+            navigate('/auth/login')
+        }
+    },[user,error])
+
+```
+Desde el layout que se ocupa para las rutas con autenticacion requerida:
+
+```jsx
+export default function Layout() {
+  
+  const {modal,handleClickModal} = useAppContext();
+  
+  const {user,error} = useAuth({
+    middleware: 'auth'
+  })
+
+```
