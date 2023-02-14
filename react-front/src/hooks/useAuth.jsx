@@ -35,7 +35,18 @@ export const useAuth = ({middleware,url}) => {
         }
     }
 
-    const register = () => { }
+    const register = async (datos,setErrores) => { 
+        try {
+            const response = await clienteAxios.post('/api/register',datos);
+            localStorage.setItem('AUTH_TOKEN',response.data.token);
+            await mutate() //Forzar revalidacion useSWR
+            setErrores([])
+        } catch (error) {
+            setErrores(Object.values(
+              error.response.data.errors
+            ));
+        }
+    }
 
     const logout =  async () => { 
         try {

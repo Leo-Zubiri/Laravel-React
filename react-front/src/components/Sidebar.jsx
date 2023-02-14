@@ -6,7 +6,7 @@ import Categoria from './Categoria'
 export default function Sidebar() {
     const {categorias} = useAppContext();
 
-    const { logout } = useAuth({
+    const { logout,user } = useAuth({
         middleware: 'auth'
     })
 
@@ -19,6 +19,8 @@ export default function Sidebar() {
                 className="w-40" 
             />
         </div>
+
+        <p className='my-10 text-xl text-center'> Hola: {user?.name}</p>
 
         <div className="mt-10">
             {categorias.map((cat) => 
