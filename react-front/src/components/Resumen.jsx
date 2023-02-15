@@ -3,10 +3,14 @@ import useAppContext from "../hooks/useAppContext"
 import ResumenProducto from "./ResumenProducto";
 
 export default function Resumen() {
-  const {pedido,total} = useAppContext();
+  const {pedido,total,handleSubmitNuevaOrden} = useAppContext();
 
   const comprobarPedido = () => pedido.length === 0;
 
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+    handleSubmitNuevaOrden();
+  }
 
   return (
     <aside className="md:w-72 h-screen overflow-y-scroll p-5">
@@ -38,13 +42,15 @@ export default function Resumen() {
         Total: {formatearDinero(total)}
       </p>
 
-      <form action="" className="w-full">
+      <form action="" className="w-full"
+        onSubmit={handleSubmit}
+      >
         <div className="mt-5">
           <input 
             type="submit"
             className={`${comprobarPedido() ? 'bg-indigo-100' : 
             'bg-indigo-600 hover:bg-indigo-800' 
-            } px-5 py-2 rounded uppercase font-bold text-white text-center w-full cursor-pointer"
+            } px-5 py-2 rounded uppercase font-bold text-white text-center cursor-pointer w-full "
             value="Confirmar Pedido`}
             disabled={comprobarPedido()}
           />

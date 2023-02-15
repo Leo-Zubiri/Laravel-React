@@ -81,6 +81,23 @@ export const AppProvider = ({children}) => {
         toast.success("Eliminado del pedido");
     }
 
+    const handleSubmitNuevaOrden = async () => { 
+        const token = localStorage.getItem('AUTH_TOKEN');
+
+        console.log(token)
+        try {
+            await clienteAxios.post('/api/pedidos',{
+                total
+            } , {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })        
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -93,7 +110,8 @@ export const AppProvider = ({children}) => {
                 total,setTotal,
                 handleAgregarPedido,
                 handleEditarCantidad,
-                handleEliminarProductoPedido
+                handleEliminarProductoPedido,
+                handleSubmitNuevaOrden
             }}
         >
             { children }
