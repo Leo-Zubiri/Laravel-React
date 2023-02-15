@@ -58,8 +58,7 @@ class PedidoController extends Controller
         PedidoProducto::insert($pedido_producto);
 
         return [
-            'message' => 'realizando pedido',
-            'pedido' => $pedido_producto
+            'message' => 'Pedido realizado correctamente',
         ];
     }
 

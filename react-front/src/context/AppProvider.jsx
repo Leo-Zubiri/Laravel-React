@@ -86,7 +86,7 @@ export const AppProvider = ({children}) => {
 
         console.log(token)
         try {
-            await clienteAxios.post('/api/pedidos',{
+            const {data} = await clienteAxios.post('/api/pedidos',{
                 total,
                 productos: pedido.map(prod => {
                     return {
@@ -98,7 +98,12 @@ export const AppProvider = ({children}) => {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })        
+            })   
+            
+            toast.success(data.message);
+            setTimeout(() => { 
+                setPedido([]);
+            },1000)
         } catch (error) {
             console.log(error);
         }
