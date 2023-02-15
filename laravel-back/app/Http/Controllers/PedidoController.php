@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
+use App\Models\PedidoProducto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller
@@ -33,8 +35,31 @@ class PedidoController extends Controller
         $pedido->total = $request->total;
         $pedido->save();
 
+        // ID del pedido
+        $pedido_id = $pedido->id;
+
+        // Obtener productos
+        $productos = $request->productos;
+
+        // Formatear un arreglo
+        $pedido_producto = [];
+
+        foreach($productos as $prod){
+            $pedido_producto[] = [
+                'pedido_id' => $pedido_id,
+                'producto_id' => $prod['id'],
+                'cantidad' => $prod['cantidad'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+
+        // Almacenar en la DB
+        PedidoProducto::insert($pedido_producto);
+
         return [
-            'message' => 'realizando pedido'
+            'message' => 'realizando pedido',
+            'pedido' => $pedido_producto
         ];
     }
 

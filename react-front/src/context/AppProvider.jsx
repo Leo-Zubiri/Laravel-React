@@ -87,7 +87,13 @@ export const AppProvider = ({children}) => {
         console.log(token)
         try {
             await clienteAxios.post('/api/pedidos',{
-                total
+                total,
+                productos: pedido.map(prod => {
+                    return {
+                        id: prod.id,
+                        cantidad: prod.cantidad
+                    }
+                }),
             } , {
                 headers: {
                     Authorization: `Bearer ${token}`
