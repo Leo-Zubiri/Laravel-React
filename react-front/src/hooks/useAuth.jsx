@@ -30,7 +30,7 @@ export const useAuth = ({middleware,url}) => {
             await mutate() //Forzar revalidacion useSWR
         } catch (error) {
             setErrores(Object.values(
-              error.response.data.errors
+              error?.response?.data?.errors
             ));
         }
     }
@@ -39,8 +39,8 @@ export const useAuth = ({middleware,url}) => {
         try {
             const response = await clienteAxios.post('/api/register',datos);
             localStorage.setItem('AUTH_TOKEN',response.data.token);
-            await mutate() //Forzar revalidacion useSWR
             setErrores([])
+            await mutate() //Forzar revalidacion useSWR
         } catch (error) {
             setErrores(Object.values(
               error.response.data.errors
@@ -63,12 +63,18 @@ export const useAuth = ({middleware,url}) => {
         }
     }
 
-    console.log(user)
-    console.log(error)
 
     useEffect(() => { 
         if(middleware === 'guest' && url && user){
             navigate(url)
+        }
+
+        if(middleware === 'guest' && user && user.admin){
+            navigate('/admin')
+        }
+
+        if(middleware === 'admin' && user && !user.admin) {
+            navigate('/');
         }
 
         if(middleware === 'auth' && error){
