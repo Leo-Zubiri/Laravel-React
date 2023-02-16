@@ -68,3 +68,30 @@ public function toArray($request)
 Al crear un modelo si se coloca la bandera `--api`, el controlador es creado junto con los metodos necesarios para el comportamiento de API REST.
 
 ```php artisan make:model Producto --resource --api --migration```
+
+## Retornar JSON a través de Resource
+
+Si se crea una relación entre modelos:
+
+```php
+class Pedido extends Model
+{
+    use HasFactory;
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+Y se utiliza un Resource se puede retornar:
+
+```php
+     */
+    public function index()
+    {
+        return new PedidoCollection(Pedido::with('user')->where('estado',0)->get());
+    }
+```
+
+El método `with` añade los datos del usuario completos `user()` junto a los datos del pedido
