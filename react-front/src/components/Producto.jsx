@@ -4,7 +4,7 @@ import useAppContext from "../hooks/useAppContext";
 export default function Producto({producto,botonAgregar = false, botonDisponible = false}) {
     const {nombre,imagen,precio} = producto;
 
-    const {handleClickModal, handleSetProducto} = useAppContext();
+    const {handleClickModal, handleSetProducto,handleClickProductoAgotado} = useAppContext();
   return (
     <div className="border p-3 shadow bg-white">
         <img 
@@ -37,7 +37,7 @@ export default function Producto({producto,botonAgregar = false, botonDisponible
             <button
                 type="button"    
                 className="bg-indigo-600 hover:bgind800 text-white w-full mt-5 p-3 uppercase font-bold rounded-xl"
-                onClick={() => { }}
+                onClick={() => { handleClickProductoAgotado(producto.id)}}
             >
                 Producto Agotado
             </button>

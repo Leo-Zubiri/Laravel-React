@@ -129,6 +129,21 @@ export const AppProvider = ({children}) => {
         }
     }
 
+    const handleClickProductoAgotado = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+        try {
+            await clienteAxios.put(`/api/productos/${id}`,null,{
+              headers: {
+                Authorization: `Bearer ${token}`
+              }  
+            })
+            console.log(id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <AppContext.Provider
             value={{
@@ -143,7 +158,8 @@ export const AppProvider = ({children}) => {
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
                 handleSubmitNuevaOrden,
-                handleClickCompletarPedido
+                handleClickCompletarPedido,
+                handleClickProductoAgotado
             }}
         >
             { children }
