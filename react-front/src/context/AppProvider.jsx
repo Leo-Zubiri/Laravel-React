@@ -84,7 +84,7 @@ export const AppProvider = ({children}) => {
     const handleSubmitNuevaOrden = async () => { 
         const token = localStorage.getItem('AUTH_TOKEN');
 
-        console.log(token)
+        //console.log(token)
         try {
             const {data} = await clienteAxios.post('/api/pedidos',{
                 total,
@@ -109,6 +109,20 @@ export const AppProvider = ({children}) => {
         }
     }
 
+    const handleClickCompletarPedido = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+        try {
+            await clienteAxios.put(`/api/pedidos/${id}`,null,{
+              headers: {
+                Authorization: `Bearer ${token}`
+              }  
+            })
+            console.log(id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -122,7 +136,8 @@ export const AppProvider = ({children}) => {
                 handleAgregarPedido,
                 handleEditarCantidad,
                 handleEliminarProductoPedido,
-                handleSubmitNuevaOrden
+                handleSubmitNuevaOrden,
+                handleClickCompletarPedido
             }}
         >
             { children }
