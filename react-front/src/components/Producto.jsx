@@ -1,7 +1,7 @@
 import { formatearDinero } from "../helpers";
 import useAppContext from "../hooks/useAppContext";
 
-export default function Producto({producto}) {
+export default function Producto({producto,botonAgregar = false, botonDisponible = false}) {
     const {nombre,imagen,precio} = producto;
 
     const {handleClickModal, handleSetProducto} = useAppContext();
@@ -20,16 +20,29 @@ export default function Producto({producto}) {
             </p>
         </div>
 
-        <button
-            type="button"    
-            className="bg-indigo-600 hover:bgind800 text-white w-full mt-5 p-3 uppercase font-bold rounded-xl"
-            onClick={() => { 
-                handleClickModal();
-                handleSetProducto(producto);
-            }}
-        >
-            Agregar
-        </button>
+        {botonAgregar && (
+            <button
+                type="button"    
+                className="bg-indigo-600 hover:bgind800 text-white w-full mt-5 p-3 uppercase font-bold rounded-xl"
+                onClick={() => { 
+                    handleClickModal();
+                    handleSetProducto(producto);
+                }}
+            >
+                Agregar
+            </button>
+        )}
+
+        {botonDisponible && (
+            <button
+                type="button"    
+                className="bg-indigo-600 hover:bgind800 text-white w-full mt-5 p-3 uppercase font-bold rounded-xl"
+                onClick={() => { }}
+            >
+                Producto Agotado
+            </button>
+        )}
+
     </div>
   )
 }

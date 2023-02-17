@@ -23,8 +23,14 @@ export const AppProvider = ({children}) => {
     },[pedido])
 
     const obtenerCategorias = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+
         try {
-            const respuesta = await clienteAxios('/api/categorias')
+            const respuesta = await clienteAxios('/api/categorias',{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
             const {data} = respuesta;
 
             setCategorias(data.data);
