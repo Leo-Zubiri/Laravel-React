@@ -12,9 +12,7 @@ export default function Ordenes() {
 
     const { data, error, isLoading} = useSWR('/api/pedidos',fetcher,{refreshInterval:1000});
 
-    console.log(data)
-    console.log(error)
-    console.log(isLoading)
+    if (isLoading) return 'cargando';
 
   return (
     <div>
@@ -23,6 +21,29 @@ export default function Ordenes() {
         Administra las ordenes desde aquí:
       </p>
 
+      <div>
+        {data.data.data.map(pedido =>(
+          <div key={pedido.id} className="p-5 bg-white shadow space-y-2 border-b">
+            <p className="text-xl font-bold text-slate-600">
+              Contenido del pedido
+            </p>
+
+            {pedido.productos.map(producto => (
+              <div
+                key={producto.id}
+                className='border-b border-b-slate-200 last-of-type:border-none py-4'
+              >
+                <p className="text-sm">ID: {producto.id}</p>
+                <p> {producto.nombre}</p>
+                <p>
+                  Cantidad: {''}
+                  <span className="font-bold">{producto.pivot.cantidad}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
